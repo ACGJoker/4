@@ -56,3 +56,56 @@
 	}
   ```
 
+## []重载
+```
+class IntArray
+{
+public:
+	IntArray(int s=0);
+    ~IntArray();
+	    //其他成员函数
+private:
+int * pArr;  //数组首地址
+int size;    //数组大小
+};
+```
+
+
+`int &operator[](int i) ;`
+- //返回引用
+- //只能用成员函数重载，不能用友元函数重载
+		
+## =重载
+
+```
+IntArray &IntArray::operator=(IntArray& right)
+{
+	delete[]pArr;
+	Size = right.Size;
+	if (right.pArr) {
+		pArr = new int[right.Size];
+		Size = right.Size;
+		for (int i = 0; i < right.Size; i++) {
+			pArr[i] = right.pArr[i];
+		}
+	}
+	return *this;//支持连等运算
+}
+```
+
+```
+int main(){
+	IntArray ia(10);
+	ia=ia;//报错,避免自己调用自己
+}
+```
+
+` if (this == &right)return *this;//改进:检测是否自身调用`
+
+
+	IntArray ia(10), ib(5);
+	IntArray ic= ia;//拷贝构造
+	ib = ia;	//等运算符
+
+
+
