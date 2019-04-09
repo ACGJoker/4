@@ -43,14 +43,16 @@
 
 
 ```
-	Complex operator++(){//++c
+	Complex operator++(){//++c//返回类对象引用，不能返回局部变量引用,
+			//返回引用时：可以实现++(++c)连增运算
 		this->dReal=this->dReal+1;
 		return *this;
 	}
-	Complex operator++(int){//c++
+	Complex operator++(int){//c++//形参不能(Complex c1)，创建实参别名c1
 		Complex temp(0,0);
 			temp=*this;
 		this->dReal=this->dReal+1;
 		return temp;
 	}
   ```
+
